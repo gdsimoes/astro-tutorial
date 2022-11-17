@@ -1,4 +1,62 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "About Me";
+
+const identity = {
+    firstName: "Guilherme",
+    country: "Canada",
+    occupation: "Full Stack Web Developer",
+    hobbies: ["chess", "math", "physics"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+        .skill {
+            color: var(--skillColor);
+            font-weight: var(--fontWeight);
+            text-transform: var(--textCase);
+        }
+    </style>
+    <p>Is this about me or about the blog. Who is speaking? Me or my creation?</p>
+
+    <p>Here are a few facts about me:</p>
+    <ul>
+        <li>My name is {identity.firstName}.</li>
+        <li>
+            I live in {identity.country} and I work as a {identity.occupation}.
+        </li>
+        {
+            identity.hobbies.length >= 2 && (
+                <li>
+                    Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}
+                </li>
+            )
+        }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+</BaseLayout>
+
+<!-- ---
 import "../styles/global.css";
 
 import Header from "../components/Header.astro";
@@ -79,4 +137,4 @@ const textCase = "uppercase";
             import "../scripts/menu.js";
         </script>
     </body>
-</html>
+</html> -->
